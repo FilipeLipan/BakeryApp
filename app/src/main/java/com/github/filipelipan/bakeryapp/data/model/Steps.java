@@ -6,5 +6,5 @@ package com.github.filipelipan.bakeryapp.data.model;
 
 public class Steps {
 
-	
+
 }
