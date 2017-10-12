@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">BakeryApp</string>
+    <string name="err_default">An unexpected error occurred.</string>
+</resources>
