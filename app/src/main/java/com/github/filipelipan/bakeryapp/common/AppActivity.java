@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 
+import com.github.filipelipan.bakeryapp.modules.recipe.RecipeListFragment;
 import com.github.filipelipan.bakeryapp.receiver.NetworkChangeReceiver;
 import com.github.filipelipan.bakeryapp.util.rx.RxHttpError;
 
@@ -33,7 +34,6 @@ public abstract class AppActivity extends AppCompatActivity implements IAppActiv
     private NetworkChangeReceiver networkReceiver;
     private List<InternetConnectionListener> internetListenerList;
 
-    private ILogoutActivityListener iLogoutActivityListener;
 
     private LoadingView loadingView;
 
@@ -67,7 +67,6 @@ public abstract class AppActivity extends AppCompatActivity implements IAppActiv
         super.onCreate(savedInstanceState);
         setupBroadcastReceiver(true);
 
-        iLogoutActivityListener = this instanceof ILogoutActivityListener ? (ILogoutActivityListener) this : null;
     }
 
     @Override
