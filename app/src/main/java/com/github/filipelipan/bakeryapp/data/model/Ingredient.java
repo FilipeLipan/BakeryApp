@@ -5,12 +5,12 @@ package com.github.filipelipan.bakeryapp.data.model;
  */
 
 public class Ingredient {
-	private int quantity;
+	private float quantity;
 	private String measure;
 	private String ingredient;
 
 
-	public int getQuantity() {
+	public float getQuantity() {
 		return quantity;
 	}
 

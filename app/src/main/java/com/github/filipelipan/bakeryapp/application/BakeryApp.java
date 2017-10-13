@@ -25,4 +25,8 @@ public class BakeryApp extends MultiDexApplication {
 
 		mRestApi = new RestClient().getApi();
 	}
+
+	public RestApi getRestApi() {
+		return mRestApi;
+	}
 }

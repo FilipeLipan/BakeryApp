@@ -5,7 +5,11 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.github.filipelipan.bakeryapp.R;
+import com.github.filipelipan.bakeryapp.application.BakeryApp;
 import com.github.filipelipan.bakeryapp.common.AppFragment;
+import com.github.filipelipan.bakeryapp.data.model.Recipe;
+
+import java.util.ArrayList;
 
 /**
  * Created by lispa on 12/10/2017.
@@ -17,7 +21,7 @@ public class RecipeListFragment extends AppFragment<IRecipeListView, RecipeListP
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
-
+		getPresenter().getRecipes();
 	}
 
 	@Override
@@ -32,6 +36,11 @@ public class RecipeListFragment extends AppFragment<IRecipeListView, RecipeListP
 
 	@Override
 	public RecipeListPresenter createPresenter() {
-		return new RecipeListPresenter();
+		return new RecipeListPresenter(BakeryApp.getsInstance().getRestApi());
+	}
+
+	@Override
+	public void loadRecipes(ArrayList<Recipe> recipes) {
+
 	}
 }
