@@ -41,8 +41,8 @@ public class MainActivity extends AppActivity {
 
 	}
 
-	@Override
-	public void onBackPressed() {
+//	@Override
+//	public void onBackPressed() {
 
 //		int count = getSupportFragmentManager().getBackStackEntryCount();
 //
@@ -68,7 +68,7 @@ public class MainActivity extends AppActivity {
 //				super.onBackPressed();
 //			}
 //		}
-	}
+//	}
 
 
 }

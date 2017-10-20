@@ -10,6 +10,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
     }
     buildTypes {
 
@@ -69,4 +71,13 @@ dependencies {
     //BaseRecyclerViewAdapterHelper
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.28'
 
+    implementation 'com.android.support:cardview-v7:26.1.0'
+
+    //lottie
+    implementation 'com.airbnb.android:lottie:2.2.5'
+
+    //florent
+    implementation 'com.github.florent37:diagonallayout:1.0.7'
+
+    implementation 'com.flaviofaria:kenburnsview:1.0.7'
 }
