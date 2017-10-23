@@ -7,4 +7,9 @@ import com.github.filipelipan.bakeryapp.common.AppPresenter;
  */
 
 public class RecipeStepsPresenter extends AppPresenter<IRecipeStepsView> {
+
+	public RecipeStepsPresenter() {
+	}
+
+
 }

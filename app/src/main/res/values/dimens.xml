@@ -3,4 +3,6 @@
     <dimen name="cardMarginHorizontal">10dp</dimen>
     <dimen name="cardMarginVertical">8dp</dimen>
     <dimen name="image_detail_header">230dp</dimen>
+
+    <dimen name="card_padding">25dp</dimen>
 </resources>

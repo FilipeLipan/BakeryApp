@@ -11,6 +11,7 @@ import com.github.filipelipan.bakeryapp.R;
 import com.github.filipelipan.bakeryapp.common.AppFragment;
 import com.github.filipelipan.bakeryapp.data.model.Recipe;
 import com.github.filipelipan.bakeryapp.modules.recipe.RecipeAdapter;
+import com.github.filipelipan.bakeryapp.modules.recipe_steps.RecipeStepsFragment;
 
 import java.util.ArrayList;
 
@@ -75,10 +76,9 @@ public class RecipeDetailFragment extends AppFragment<IRecipeDetailView, RecipeD
 		mStepsAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
 			@Override
 			public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-				getAppActivityListener().replaceAndBackStackFragment(RecipeDetailFragment.newInstance((Recipe) adapter.getItem(position)));
+				getAppActivityListener().replaceAndBackStackFragment(RecipeStepsFragment.newInstance(mRecipe.getSteps(), position));
 			}
 		});
-
 	}
 
 	@Override
