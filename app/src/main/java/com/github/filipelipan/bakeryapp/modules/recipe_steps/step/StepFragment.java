@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -39,6 +40,8 @@ public class StepFragment extends AppFragment<IRecipeStepsView, RecipeStepsPrese
 	TextView descriptionTextView;
 	@BindView(R.id.video_iv)
 	ImageView videoImageView;
+	@BindView(R.id.next_bt)
+	Button mNextButton;
 	@BindView(R.id.cardView)
 	CardView mCardView;
 	private StepFragmentListItemListener listener;
@@ -79,6 +82,10 @@ public class StepFragment extends AppFragment<IRecipeStepsView, RecipeStepsPrese
 					.apply(RequestOptions.centerCropTransform())
 					.into(videoImageView);
 			descriptionTextView.setText(mStep.getDescription());
+
+			if(mIsLastItem){
+				mNextButton.setText(getContext().getString(R.string.finish));
+			}
 		}
 
 		mCardView.setMaxCardElevation(mCardView.getCardElevation()

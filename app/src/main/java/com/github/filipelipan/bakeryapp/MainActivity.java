@@ -20,7 +20,6 @@ public class MainActivity extends AppActivity implements StepFragment.StepFragme
 
 	@BindView(R.id.container)
 	FrameLayout container;
-
 	@BindView(R.id.toolbar)
 	Toolbar toolbar;
 
@@ -57,7 +56,6 @@ public class MainActivity extends AppActivity implements StepFragment.StepFragme
 
 //	@Override
 //	public void onBackPressed() {
-
 //		int count = getSupportFragmentManager().getBackStackEntryCount();
 //
 //		if (count > 0) {
@@ -83,6 +81,4 @@ public class MainActivity extends AppActivity implements StepFragment.StepFragme
 //			}
 //		}
 //	}
-
-
 }

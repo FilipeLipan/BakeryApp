@@ -97,6 +97,6 @@ public class RecipeStepsFragment extends AppFragment<IRecipeStepsView, RecipeSte
 
 	@Override
 	public void onClickLastStep() {
-
+		getActivity().onBackPressed();
 	}
 }

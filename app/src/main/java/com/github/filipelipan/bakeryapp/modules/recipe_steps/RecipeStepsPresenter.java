@@ -10,6 +10,4 @@ public class RecipeStepsPresenter extends AppPresenter<IRecipeStepsView> {
 
 	public RecipeStepsPresenter() {
 	}
-
-
 }
