@@ -8,9 +8,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.flaviofaria.kenburnsview.KenBurnsView;
 import com.github.filipelipan.bakeryapp.R;
 import com.github.filipelipan.bakeryapp.common.AppFragment;
 import com.github.filipelipan.bakeryapp.data.model.Ingredient;
@@ -39,6 +43,11 @@ public class RecipeDetailFragment extends AppFragment<IRecipeDetailView, RecipeD
 
 	@BindView(R.id.steps_rv)
 	RecyclerView mStepsRecyclerView;
+	@BindView(R.id.recipe_name_tv)
+	TextView mRecipeName;
+
+	@BindView(R.id.recipe_image_kbv)
+	KenBurnsView mRecipeImage;
 
 	public static RecipeDetailFragment newInstance(Recipe recipe){
 		RecipeDetailFragment recipeDetailFragment = new RecipeDetailFragment();
@@ -56,6 +65,13 @@ public class RecipeDetailFragment extends AppFragment<IRecipeDetailView, RecipeD
 		if(bundle != null ){
 			if(bundle.containsKey(RECIPE_KEY)){
 				mRecipe = bundle.getParcelable(RECIPE_KEY);
+
+				Glide.with(getContext())
+						.load(mRecipe.getImage())
+						.thumbnail(Glide.with(getContext())
+								.load(R.drawable.recipe_placeholder))
+						.into((ImageView) mRecipeImage);
+				mRecipeName.setText(mRecipe.getName());
 			}
 		}
 

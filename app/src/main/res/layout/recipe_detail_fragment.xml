@@ -33,17 +33,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher_background"
+            android:id="@+id/recipe_image_kbv"
+            android:src="@drawable/recipe_placeholder"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hugh Jackman"
+            tools:text="Delicious Meal"
+            android:id="@+id/recipe_name_tv"
             android:textColor="@android:color/white"
-            android:layout_gravity="top|left"
+            android:layout_gravity="start|top"
             android:fontFamily="sans-serif-light"
-            android:layout_marginLeft="30dp"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="70dp"
             android:textSize="25sp"
             />
