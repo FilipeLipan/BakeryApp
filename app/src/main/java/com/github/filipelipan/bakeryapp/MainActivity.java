@@ -3,6 +3,7 @@ package com.github.filipelipan.bakeryapp;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.github.filipelipan.bakeryapp.common.AppActivity;
@@ -81,4 +82,13 @@ public class MainActivity extends AppActivity implements StepFragment.StepFragme
 //			}
 //		}
 //	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (item.getItemId() == android.R.id.home) {
+			onBackPressed();
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
 }
