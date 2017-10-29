@@ -4,9 +4,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
 import com.github.filipelipan.bakeryapp.R;
 import com.github.filipelipan.bakeryapp.common.AppFragment;
@@ -89,4 +88,15 @@ public class RecipeStepsFragment extends AppFragment<IRecipeStepsView, RecipeSte
 	}
 
 
+	@Override
+	public void moveToStep(Step step) {
+		int index = 0;
+		index = mSteps.indexOf(step);
+		mViewPager.setCurrentItem(index + 1);
+	}
+
+	@Override
+	public void onClickLastStep() {
+
+	}
 }

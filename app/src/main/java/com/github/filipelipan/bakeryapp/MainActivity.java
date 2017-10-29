@@ -1,22 +1,22 @@
 package com.github.filipelipan.bakeryapp;
 
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
 
 import com.github.filipelipan.bakeryapp.common.AppActivity;
-import com.github.filipelipan.bakeryapp.modules.recipe.RecipeListFragment;
+import com.github.filipelipan.bakeryapp.data.model.Step;
+import com.github.filipelipan.bakeryapp.modules.recipe.RecipeListFragment;;
+import com.github.filipelipan.bakeryapp.modules.recipe_steps.RecipeStepsFragment;
+import com.github.filipelipan.bakeryapp.modules.recipe_steps.step.StepFragment;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppActivity {
+public class MainActivity extends AppActivity implements StepFragment.StepFragmentListItemListener {
 
 	@BindView(R.id.container)
 	FrameLayout container;
@@ -39,6 +39,20 @@ public class MainActivity extends AppActivity {
 			ft.commit();
 		}
 
+	}
+
+	@Override
+	public void onNextStepClick(Step stepClicked) {
+		RecipeStepsFragment recipeStepsFragment =
+				(RecipeStepsFragment) getSupportFragmentManager().findFragmentByTag(RecipeStepsFragment.class.getSimpleName());
+		recipeStepsFragment.moveToStep(stepClicked);
+	}
+
+	@Override
+	public void onLastStepClick() {
+		RecipeStepsFragment recipeStepsFragment =
+				(RecipeStepsFragment) getSupportFragmentManager().findFragmentByTag(RecipeStepsFragment.class.getSimpleName());
+		recipeStepsFragment.onClickLastStep();
 	}
 
 //	@Override

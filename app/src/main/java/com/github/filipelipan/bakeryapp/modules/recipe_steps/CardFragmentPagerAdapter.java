@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.github.filipelipan.bakeryapp.data.model.Step;
 import com.github.filipelipan.bakeryapp.modules.recipe_steps.step.StepFragment;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +30,11 @@ public class CardFragmentPagerAdapter extends FragmentStatePagerAdapter implemen
 		mSteps = steps;
 
 		for (Step step: mSteps) {
-			addCardFragment(StepFragment.newInstance(step));
+			StepFragment stepFragment = StepFragment.newInstance(step, false);
+			if(mSteps.indexOf(step) == (mSteps.size() -1)){
+				stepFragment = StepFragment.newInstance(step, true);
+			}
+			addCardFragment(stepFragment);
 		}
 
 	}
