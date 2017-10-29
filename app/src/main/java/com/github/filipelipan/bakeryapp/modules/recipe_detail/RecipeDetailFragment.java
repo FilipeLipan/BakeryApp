@@ -1,14 +1,19 @@
 package com.github.filipelipan.bakeryapp.modules.recipe_detail;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.github.filipelipan.bakeryapp.R;
 import com.github.filipelipan.bakeryapp.common.AppFragment;
+import com.github.filipelipan.bakeryapp.data.model.Ingredient;
 import com.github.filipelipan.bakeryapp.data.model.Recipe;
 import com.github.filipelipan.bakeryapp.modules.recipe.RecipeAdapter;
 import com.github.filipelipan.bakeryapp.modules.recipe_steps.RecipeStepsFragment;
@@ -63,7 +68,11 @@ public class RecipeDetailFragment extends AppFragment<IRecipeDetailView, RecipeD
 		mIngredientsAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
 			@Override
 			public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-				getAppActivityListener().replaceAndBackStackFragment(RecipeDetailFragment.newInstance((Recipe) adapter.getItem(position)));
+				ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+				ClipData clip = ClipData.newPlainText("", ((Ingredient) adapter.getItem(position)).getIngredient());
+				clipboard.setPrimaryClip(clip);
+
+				Toast.makeText(getContext(), getString(R.string.copy_to_clipboard), Toast.LENGTH_SHORT).show();
 			}
 		});
 
