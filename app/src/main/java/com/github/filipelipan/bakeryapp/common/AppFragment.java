@@ -110,6 +110,9 @@ public abstract class AppFragment<V extends AppView, P extends MvpPresenter<V>> 
         Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
     }
 
+    public boolean isTabletPanel(){
+        return false;
+    };
 
     /**
      * Tag para identificacao do Fragmento na pilha do FragmentManager

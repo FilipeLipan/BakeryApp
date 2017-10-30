@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.github.filipelipan.bakeryapp.R;
+import com.github.filipelipan.bakeryapp.StepsActivity;
 import com.github.filipelipan.bakeryapp.application.BakeryApp;
 import com.github.filipelipan.bakeryapp.common.AppFragment;
 import com.github.filipelipan.bakeryapp.data.model.Recipe;
@@ -29,6 +30,10 @@ public class RecipeListFragment extends AppFragment<IRecipeListView, RecipeListP
 
 	private RecipeAdapter mRecipeAdapter;
 
+	public static RecipeListFragment newInstance(){
+		return new RecipeListFragment();
+	}
+
 	@Override
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
@@ -49,7 +54,7 @@ public class RecipeListFragment extends AppFragment<IRecipeListView, RecipeListP
 		mRecipeAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
 			@Override
 			public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-				getAppActivityListener().replaceAndBackStackFragment(RecipeDetailFragment.newInstance((Recipe) adapter.getItem(position)));
+				startActivity(StepsActivity.newIntent(getContext(), (Recipe) adapter.getItem(position)));
 			}
 		});
 	}
@@ -72,5 +77,10 @@ public class RecipeListFragment extends AppFragment<IRecipeListView, RecipeListP
 	@Override
 	public void loadRecipes(ArrayList<Recipe> recipes) {
 		mRecipeAdapter.setNewData(recipes);
+	}
+
+	@Override
+	public boolean isTabletPanel() {
+		return true;
 	}
 }

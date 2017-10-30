@@ -30,6 +30,7 @@ import butterknife.ButterKnife;
 public abstract class AppActivity extends AppCompatActivity implements IAppActivityListener, IErrorHandlerView, AppView{
 
     FrameLayout container;
+    FrameLayout tabletPanelContainer;
 
     private NetworkChangeReceiver networkReceiver;
     private List<InternetConnectionListener> internetListenerList;
@@ -79,20 +80,36 @@ public abstract class AppActivity extends AppCompatActivity implements IAppActiv
         this.container = container;
     }
 
+    public void setTabletPanelContainer(FrameLayout tabletPanelContainer) {
+        this.tabletPanelContainer = tabletPanelContainer;
+    }
+
     @Override
     public void replaceFragment(AppFragment fragment) {
-        FragmentTransaction ft = getFragmentTransaction();
+        if(fragment.isTabletPanel() && tabletPanelContainer != null){
+            FragmentTransaction ft = getFragmentTransaction();
 
-        ft.replace(container.getId(), fragment, fragment.getFragmentTag());
-        ft.commit();
+            ft.replace(tabletPanelContainer.getId(), fragment, fragment.getFragmentTag());
+            ft.commit();
+        }else {
+            FragmentTransaction ft = getFragmentTransaction();
+
+            ft.replace(container.getId(), fragment, fragment.getFragmentTag());
+            ft.commit();
+        }
     }
 
     @Override
     public void replaceAndBackStackFragment(AppFragment fragment) {
         FragmentTransaction ft = getFragmentTransaction();
 
-        ft.replace(container.getId(), fragment, fragment.getFragmentTag());
-        ft.addToBackStack(fragment.getFragmentTag());
+        if(fragment.isTabletPanel() && tabletPanelContainer != null){
+            ft.replace(tabletPanelContainer.getId(), fragment, fragment.getFragmentTag());
+            ft.addToBackStack(fragment.getFragmentTag());
+        }else {
+            ft.replace(container.getId(), fragment, fragment.getFragmentTag());
+            ft.addToBackStack(fragment.getFragmentTag());
+        }
         ft.commit();
     }
 

@@ -5,4 +5,5 @@
     <string name="empty_list">Empty</string>
     <string name="copy_to_clipboard">Copied to clipboard</string>
     <string name="finish">Finish</string>
+    <string name="title_activity_steps">StepsActivity</string>
 </resources>

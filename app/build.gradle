@@ -15,7 +15,7 @@ android {
     }
     buildTypes {
 
-        debug  {
+        debug {
             buildConfigField 'String', 'HOST', '"https://d17h27t6h515a5.cloudfront.net/"'
         }
 
