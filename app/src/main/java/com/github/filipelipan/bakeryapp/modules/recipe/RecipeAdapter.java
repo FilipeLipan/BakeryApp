@@ -27,14 +27,16 @@ public class RecipeAdapter extends BaseQuickAdapter<Recipe,BaseViewHolder> {
 	}
 
 	@Override
-	protected void convert(BaseViewHolder helper, Recipe item) {
+	protected void convert(BaseViewHolder helper, Recipe getRecipe) {
 
 
 		Glide.with(mContext)
-				.load(item.getImage())
+				.load(getRecipe.getImage())
+				.thumbnail(Glide.with(mContext)
+						.load(R.drawable.recipe_placeholder))
 				.into((ImageView) helper.getView(R.id.recipe_image_iv));
 
-		helper.setText(R.id.recipe_title_tv, item.getName());
-		helper.setText(R.id.recipe_description_tv, item.getServings() + mContext.getString(R.string.servings));
+		helper.setText(R.id.recipe_title_tv, getRecipe.getName());
+		helper.setText(R.id.recipe_description_tv, getRecipe.getServings() + mContext.getString(R.string.servings));
 	}
 }

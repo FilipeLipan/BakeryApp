@@ -49,12 +49,12 @@ public class StepsActivity extends AppActivity implements StepFragment.StepFragm
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_steps);
 		ButterKnife.bind(this);
 
 		setContainer(container);
 		if(getResources().getBoolean(R.bool.is_tablet)){
-			setContainer(tabletMenuContainer);
+			setTabletPanelContainer(tabletMenuContainer);
 		}
 
 		if(getIntent().getExtras() != null && getIntent().getExtras().containsKey(RECIPE_KEY)){
@@ -65,7 +65,7 @@ public class StepsActivity extends AppActivity implements StepFragment.StepFragm
 
 		if (savedInstanceState == null && mRecipe != null) {
 			FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-			ft.add(container.getId(), RecipeDetailFragment.newInstance(mRecipe), RecipeListFragment.class.getSimpleName());
+			ft.add(tabletMenuContainer.getId(), RecipeDetailFragment.newInstance(mRecipe), RecipeListFragment.class.getSimpleName());
 			ft.commit();
 		}
 	}
