@@ -8,4 +8,9 @@
     <dimen name="grid_list_item_height">300dp</dimen>
 
     <dimen name="empty_grid">25sp</dimen>
+
+
+    <!-- recipe list fragment -->
+    <dimen name="recipe_grid_fragment_padding">30dp</dimen>
+    <dimen name="recipe_grid_fragment_margin_cards">8dp</dimen>
 </resources>

@@ -101,7 +101,7 @@ public class RecipeListFragment extends AppFragment<IRecipeListView, RecipeListP
 		if(context.getResources().getBoolean(R.bool.is_tablet)){
 			noOfColumns = (int) (dpWidth / 270);
 		}else {
-			noOfColumns = (int) (dpWidth / 180);
+			noOfColumns = (int) (dpWidth / 250);
 		}
 
 		if(noOfColumns <= 0){
