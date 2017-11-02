@@ -34,14 +34,22 @@ public class MainActivity extends AppActivity {
 		ButterKnife.bind(this);
 
 		setContainer(container);
-
 		setToolbar(toolbar);
+
 		if (savedInstanceState == null) {
 			FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 			ft.add(container.getId(), RecipeListFragment.newInstance(), RecipeListFragment.class.getSimpleName());
 			ft.commit();
 		}
 
+	}
+
+	@Override
+	public void setToolbar(Toolbar toolbar) {
+		super.setToolbar(toolbar);
+		setSupportActionBar(toolbar);
+
+		getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 	}
 
 	@Override

@@ -93,4 +93,14 @@ public class StepsActivity extends AppActivity implements StepFragment.StepFragm
 		return super.onOptionsItemSelected(item);
 	}
 
+	@Override
+	public void onBackPressed() {
+		if(getResources().getBoolean(R.bool.is_tablet)){
+			finish();
+		}else {
+			super.onBackPressed();
+		}
+	}
+
+
 }

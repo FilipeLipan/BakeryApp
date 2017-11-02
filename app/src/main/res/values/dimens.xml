@@ -6,4 +6,5 @@
 
     <dimen name="card_padding">25dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="padding_margin_item_card_title">10dp</dimen>
 </resources>
