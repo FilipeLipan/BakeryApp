@@ -79,4 +79,7 @@ dependencies {
     //florent
     implementation 'com.github.florent37:diagonallayout:1.0.7'
     implementation 'com.flaviofaria:kenburnsview:1.0.7'
+
+    //ExoPlayer
+    compile 'com.google.android.exoplayer:exoplayer:r2.2.0'
 }

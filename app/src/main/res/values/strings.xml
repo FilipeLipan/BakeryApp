@@ -6,4 +6,7 @@
     <string name="copy_to_clipboard">Copied to clipboard</string>
     <string name="finish">Finish</string>
     <string name="title_activity_steps">StepsActivity</string>
+    <string name="time">Time</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="steps">Steps</string>
 </resources>

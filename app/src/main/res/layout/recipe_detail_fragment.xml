@@ -5,183 +5,178 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:diagonal="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#AAA"
-    >
+    android:background="@color/background">
 
-    <com.github.florent37.diagonallayout.DiagonalLayout
-        android:id="@+id/diagonalLayout"
+    <RelativeLayout
+        android:id="@+id/activity_main"
         android:layout_width="match_parent"
-        android:layout_height="266dp"
-        diagonal:diagonal_angle="10"
-        android:elevation="0dp"
-        android:paddingBottom="16dp"
-        diagonal:diagonal_direction="left"
-        diagonal:diagonal_position="bottom"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        >
+        android:layout_height="wrap_content">
 
-        <com.flaviofaria.kenburnsview.KenBurnsView
+        <com.github.florent37.diagonallayout.DiagonalLayout
+            android:id="@+id/diagonalLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:id="@+id/recipe_image_kbv"
-            android:src="@drawable/recipe_placeholder"
-            />
+            android:layout_height="266dp"
+            diagonal:diagonal_angle="10"
+            android:elevation="0dp"
+            android:paddingBottom="16dp"
+            diagonal:diagonal_direction="left"
+            diagonal:diagonal_position="bottom"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            >
+
+            <com.flaviofaria.kenburnsview.KenBurnsView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:id="@+id/recipe_image_kbv"
+                android:src="@drawable/recipe_placeholder"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Delicious Meal"
+                android:padding="8dp"
+                android:id="@+id/recipe_name_tv"
+                style="@style/BoldTextViewWithShadow"
+                android:layout_gravity="start|top"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="70dp" />
+
+        </com.github.florent37.diagonallayout.DiagonalLayout>
+
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="190dp"
+            android:elevation="15dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            android:layout_marginTop="230dp"
+            >
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/diagonalLayout"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/time"
+                    android:textColor="#3E3E3E"
+                    android:fontFamily="sans-serif-condensed"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="14sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3Hrs."
+                    android:textStyle="bold"
+                    android:textColor="#3E3E3E"
+                    android:fontFamily="sans-serif-condensed"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="14sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/diagonalLayout"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/servings"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="sans-serif-condensed"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="14sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="sans-serif-condensed"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="14sp"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ingredients_title_tv"
+            tools:layout_height="30dp"
+            android:layout_marginTop="290dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:text="@string/ingredients"
+            android:textColor="@color/grey_text" />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:id="@+id/ingredients_rv"
+            android:layout_below="@id/ingredients_title_tv"
+            tools:layout_height="30dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/steps_title_tv"
+            android:layout_below="@id/ingredients_rv"
+            tools:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:text="@string/steps"
+            android:textColor="@color/grey_text" />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:id="@+id/steps_rv"
+            android:layout_below="@id/steps_title_tv"
+            tools:layout_height="30dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp" />
+
+        <android.support.v4.widget.Space
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Delicious Meal"
-            android:padding="8dp"
-            android:id="@+id/recipe_name_tv"
-            style="@style/BoldTextViewWithShadow"
-            android:layout_gravity="start|top"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="70dp" />
-
-    </com.github.florent37.diagonallayout.DiagonalLayout>
-
-    <ImageView
-        android:id="@+id/avatar"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="190dp"
-        android:elevation="15dp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="4"
-        android:layout_marginTop="230dp"
-        >
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-        <View
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/diagonalLayout"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tempo"
-                android:textColor="#3E3E3E"
-                android:fontFamily="sans-serif-condensed"
-                android:layout_marginLeft="10dp"
-                android:textSize="14sp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="3Hrs."
-                android:textStyle="bold"
-                android:textColor="#3E3E3E"
-                android:fontFamily="sans-serif-condensed"
-                android:layout_marginLeft="10dp"
-                android:textSize="14sp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/diagonalLayout"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Redimento"
-                android:textColor="#3E3E3E"
-                android:fontFamily="sans-serif-condensed"
-                android:layout_marginLeft="10dp"
-                android:textSize="14sp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="3 poções"
-                android:textStyle="bold"
-                android:textColor="#3E3E3E"
-                android:fontFamily="sans-serif-condensed"
-                android:layout_marginLeft="10dp"
-                android:textSize="14sp"/>
-
-
-        </LinearLayout>
-
-    </LinearLayout>
-    
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/ingredients_title_tv"
-        tools:layout_height="30dp"
-        android:layout_marginTop="290dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:text="Ingredientes"
-        android:textColor="#717171" />
-
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:id="@+id/ingredients_rv"
-        android:layout_below="@id/ingredients_title_tv"
-        tools:layout_height="30dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:textColor="#717171" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/steps_title_tv"
-        android:layout_below="@id/ingredients_rv"
-        tools:layout_height="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:text="Steps"
-        android:textColor="#717171" />
-
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:id="@+id/steps_rv"
-        android:layout_below="@id/steps_title_tv"
-        tools:layout_height="30dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:textColor="#717171" />
-
-    <android.support.v4.widget.Space
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_below="@id/steps_rv"/>
-</RelativeLayout>
+            android:layout_height="20dp"
+            android:layout_below="@id/steps_rv"/>
+    </RelativeLayout>
 </ScrollView>
