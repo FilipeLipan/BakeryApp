@@ -64,9 +64,6 @@ public class StepsActivity extends AppActivity implements StepFragment.StepFragm
 		setToolbar(toolbar);
 
 		if (savedInstanceState == null && mRecipe != null) {
-//			FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//			ft.add(tabletMenuContainer.getId(), RecipeDetailFragment.newInstance(mRecipe), RecipeListFragment.class.getSimpleName());
-//			ft.commit();
 			replaceFragment(RecipeDetailFragment.newInstance(mRecipe));
 		}
 	}

@@ -97,7 +97,7 @@ public abstract class AppActivity extends AppCompatActivity implements IAppActiv
             ft.replace(container.getId(), fragment, fragment.getFragmentTag());
             ft.commit();
         }
-    }
+        }
 
     @Override
     public void replaceAndBackStackFragment(AppFragment fragment) {

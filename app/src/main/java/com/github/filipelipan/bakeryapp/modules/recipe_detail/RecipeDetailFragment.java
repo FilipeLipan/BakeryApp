@@ -120,4 +120,9 @@ public class RecipeDetailFragment extends AppFragment<IRecipeDetailView, RecipeD
 	public RecipeDetailPresenter createPresenter() {
 		return new RecipeDetailPresenter();
 	}
+
+	@Override
+	public boolean isTabletPanel() {
+		return true;
+	}
 }
