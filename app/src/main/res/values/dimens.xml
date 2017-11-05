@@ -11,4 +11,5 @@
     <!-- recipe list fragment -->
     <dimen name="recipe_grid_fragment_padding">5dp</dimen>
     <dimen name="recipe_grid_fragment_margin_cards">4dp</dimen>
+    <dimen name="heavy_padding">16dp</dimen>
 </resources>

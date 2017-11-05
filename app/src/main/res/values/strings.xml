@@ -9,4 +9,7 @@
     <string name="time">Time</string>
     <string name="ingredients">Ingredients</string>
     <string name="steps">Steps</string>
+    <string name="play">Play</string>
+    <string name="pause">Pause</string>
+    <string name="restart">Restart</string>
 </resources>
