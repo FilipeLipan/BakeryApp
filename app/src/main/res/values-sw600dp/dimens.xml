@@ -9,6 +9,10 @@
 
     <dimen name="empty_grid">25sp</dimen>
 
+    <dimen name="heavy_padding">32dp</dimen>
+    <dimen name="player_height">350dp</dimen>
+    <dimen name="card_padding_horizontal">30dp</dimen>
+    <dimen name="card_padding_vertical">60dp</dimen>
 
     <!-- recipe list fragment -->
     <dimen name="recipe_grid_fragment_padding">30dp</dimen>
