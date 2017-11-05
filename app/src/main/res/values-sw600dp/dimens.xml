@@ -1,14 +1,12 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    
+
+    <!-- recipe detail fragment -->
     <dimen name="padding_movie_grid_item">4dp</dimen>
     <dimen name="margin_right_movie_grid_item">4dp</dimen>
     <dimen name="margin_left_movie_grid_item">4dp</dimen>
-
     <dimen name="grid_list_item_height">300dp</dimen>
-
     <dimen name="empty_grid">25sp</dimen>
-
     <dimen name="heavy_padding">32dp</dimen>
     <dimen name="player_height">350dp</dimen>
     <dimen name="card_padding_horizontal">30dp</dimen>

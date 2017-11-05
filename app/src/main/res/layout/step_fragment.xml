@@ -40,7 +40,7 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="next"
+            android:text="@string/next"
             android:id="@+id/next_bt"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
