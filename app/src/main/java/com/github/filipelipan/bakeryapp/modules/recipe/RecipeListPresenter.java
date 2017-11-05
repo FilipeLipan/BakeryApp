@@ -1,6 +1,7 @@
 package com.github.filipelipan.bakeryapp.modules.recipe;
 
 import com.github.filipelipan.bakeryapp.common.AppPresenter;
+import com.github.filipelipan.bakeryapp.data.cache.RecipeRepository;
 import com.github.filipelipan.bakeryapp.data.model.Recipe;
 import com.github.filipelipan.bakeryapp.data.ws.RestApi;
 import com.github.filipelipan.bakeryapp.util.rx.IErrorHandlerHelper;
@@ -19,17 +20,17 @@ import io.reactivex.schedulers.Schedulers;
 
 public class RecipeListPresenter extends AppPresenter<IRecipeListView> {
 
-	private final RestApi mRestApi;
+	private final RecipeRepository mRecipeRepository;
 
-	public RecipeListPresenter(RestApi restApi) {
-		this.mRestApi = restApi;
+	public RecipeListPresenter(RecipeRepository recipeRepository) {
+		this.mRecipeRepository = recipeRepository;
 	}
 
 	public void getRecipes(){
 
 		if(isViewAttached()) {
 
-			mRestApi.getRecipes()
+			mRecipeRepository.get()
 					.subscribeOn(Schedulers.io())
 					.observeOn(AndroidSchedulers.mainThread())
 					.subscribe(new DisposableObserver<ArrayList<Recipe>>() {

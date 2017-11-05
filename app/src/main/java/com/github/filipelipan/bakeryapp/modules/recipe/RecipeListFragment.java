@@ -74,7 +74,7 @@ public class RecipeListFragment extends AppFragment<IRecipeListView, RecipeListP
 
 	@Override
 	public RecipeListPresenter createPresenter() {
-		return new RecipeListPresenter(BakeryApp.getsInstance().getRestApi());
+		return new RecipeListPresenter(BakeryApp.getsInstance().getRecipeRepository());
 	}
 
 	@Override

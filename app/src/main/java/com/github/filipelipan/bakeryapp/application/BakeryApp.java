@@ -2,6 +2,7 @@ package com.github.filipelipan.bakeryapp.application;
 
 import android.support.multidex.MultiDexApplication;
 
+import com.github.filipelipan.bakeryapp.data.cache.RecipeRepository;
 import com.github.filipelipan.bakeryapp.data.ws.RestApi;
 import com.github.filipelipan.bakeryapp.data.ws.RestClient;
 
@@ -12,6 +13,7 @@ import com.github.filipelipan.bakeryapp.data.ws.RestClient;
 public class BakeryApp extends MultiDexApplication {
 	private static BakeryApp sInstance;
 	private RestApi mRestApi;
+	private RecipeRepository mRecipeRepository;
 
 	public static BakeryApp getsInstance(){
 		return sInstance;
@@ -24,9 +26,15 @@ public class BakeryApp extends MultiDexApplication {
 		sInstance = this;
 
 		mRestApi = new RestClient().getApi();
+
+		mRecipeRepository = new RecipeRepository(getFilesDir(), getRestApi());
 	}
 
 	public RestApi getRestApi() {
 		return mRestApi;
+	}
+
+	public RecipeRepository getRecipeRepository() {
+		return mRecipeRepository;
 	}
 }
