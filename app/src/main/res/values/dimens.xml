@@ -4,7 +4,8 @@
     <dimen name="cardMarginVertical">8dp</dimen>
     <dimen name="image_detail_header">230dp</dimen>
 
-    <dimen name="card_padding">25dp</dimen>
+    <dimen name="card_padding_horizontal">30dp</dimen>
+    <dimen name="card_padding_vertical">25dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="padding_margin_item_card_title">10dp</dimen>
 
