@@ -1,5 +1,8 @@
 package com.github.filipelipan.bakeryapp.modules.recipe;
 
+import android.support.annotation.Nullable;
+
+import com.github.filipelipan.bakeryapp.IdlingResource.SimpleIdlingResource;
 import com.github.filipelipan.bakeryapp.common.AppPresenter;
 import com.github.filipelipan.bakeryapp.data.cache.RecipeRepository;
 import com.github.filipelipan.bakeryapp.data.model.Recipe;
@@ -22,11 +25,19 @@ public class RecipeListPresenter extends AppPresenter<IRecipeListView> {
 
 	private final RecipeRepository mRecipeRepository;
 
-	public RecipeListPresenter(RecipeRepository recipeRepository) {
+	@Nullable
+	final SimpleIdlingResource idlingResource;
+
+	public RecipeListPresenter(RecipeRepository recipeRepository,SimpleIdlingResource idlingResource) {
 		this.mRecipeRepository = recipeRepository;
+		this.idlingResource = idlingResource;
 	}
 
 	public void getRecipes(){
+
+		if(idlingResource != null){
+			idlingResource.setIdleState(false);
+		}
 
 		if(isViewAttached()) {
 
@@ -46,11 +57,13 @@ public class RecipeListPresenter extends AppPresenter<IRecipeListView> {
 							if(isViewAttached()){
 								IErrorHandlerHelper.defaultErrorResolver(RecipeListPresenter.this.getView(), e);
 							}
+							if(idlingResource != null){
+								idlingResource.setIdleState(true);
+							}
 						}
 
 						@Override
 						public void onComplete() {
-
 						}
 					});
 		}

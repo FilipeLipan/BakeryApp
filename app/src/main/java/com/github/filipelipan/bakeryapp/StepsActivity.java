@@ -13,12 +13,15 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.github.filipelipan.bakeryapp.common.AppActivity;
+import com.github.filipelipan.bakeryapp.data.model.Ingredient;
 import com.github.filipelipan.bakeryapp.data.model.Recipe;
 import com.github.filipelipan.bakeryapp.data.model.Step;
 import com.github.filipelipan.bakeryapp.modules.recipe.RecipeListFragment;
 import com.github.filipelipan.bakeryapp.modules.recipe_detail.RecipeDetailFragment;
 import com.github.filipelipan.bakeryapp.modules.recipe_steps.RecipeStepsFragment;
 import com.github.filipelipan.bakeryapp.modules.recipe_steps.step.StepFragment;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -62,7 +65,15 @@ public class StepsActivity extends AppActivity implements StepFragment.StepFragm
 		}
 
 		setToolbar(toolbar);
-
+//		Step step = new Step().setId(1).setShortDescription("asdasdas").setShortDescription("asdasdasdasd asd as das").setVideoURL("asdasdas").setThumbnailURL("https://i.imgur.com/brMJWS3.jpg");
+//				ArrayList<Step> steps = new ArrayList<>();
+//				steps.add(step);
+//
+//				Ingredient ingredient = new Ingredient().setQuantity(1).setMeasure("teste").setIngredient("testeIngredient");
+//				ArrayList<Ingredient> ingredients = new ArrayList<>();
+//				ingredients.add(ingredient);
+//
+//		mRecipe = new Recipe().setId(1).setName("teste").setServings(1).setImage("https://i.imgur.com/brMJWS3.jpg").setSteps(steps).setIngredients(ingredients);
 		if (savedInstanceState == null && mRecipe != null) {
 			replaceFragment(RecipeDetailFragment.newInstance(mRecipe));
 		}

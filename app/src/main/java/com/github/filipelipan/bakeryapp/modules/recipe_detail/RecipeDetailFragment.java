@@ -60,7 +60,7 @@ public class RecipeDetailFragment extends AppFragment<IRecipeDetailView, RecipeD
 	@Override
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-
+		mRecipeImage.setVisibility(View.GONE);
 		Bundle bundle = getArguments();
 		if(bundle != null ){
 			if(bundle.containsKey(RECIPE_KEY)){

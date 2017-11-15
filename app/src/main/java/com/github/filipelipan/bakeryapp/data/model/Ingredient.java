@@ -12,31 +12,32 @@ public class Ingredient implements Parcelable {
 	private String measure;
 	private String ingredient;
 
-
 	public float getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(int quantity) {
+	public Ingredient setQuantity(float quantity) {
 		this.quantity = quantity;
+		return this;
 	}
 
 	public String getMeasure() {
 		return measure;
 	}
 
-	public void setMeasure(String measure) {
+	public Ingredient setMeasure(String measure) {
 		this.measure = measure;
+		return this;
 	}
 
 	public String getIngredient() {
 		return ingredient;
 	}
 
-	public void setIngredient(String ingredient) {
+	public Ingredient setIngredient(String ingredient) {
 		this.ingredient = ingredient;
+		return this;
 	}
-
 
 	@Override
 	public int describeContents() {

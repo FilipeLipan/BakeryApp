@@ -2,7 +2,10 @@ package com.github.filipelipan.bakeryapp.modules.recipe;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
+import android.support.test.espresso.IdlingResource;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +13,8 @@ import android.util.DisplayMetrics;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.github.filipelipan.bakeryapp.IdlingResource.SimpleIdlingResource;
+import com.github.filipelipan.bakeryapp.MainActivity;
 import com.github.filipelipan.bakeryapp.R;
 import com.github.filipelipan.bakeryapp.StepsActivity;
 import com.github.filipelipan.bakeryapp.application.BakeryApp;
@@ -26,7 +31,6 @@ import butterknife.BindView;
  */
 
 public class RecipeListFragment extends AppFragment<IRecipeListView, RecipeListPresenter> implements IRecipeListView {
-
 
 	@BindView(R.id.recipe_list_rv)
 	RecyclerView mRecipeRecyclerView;
@@ -60,6 +64,7 @@ public class RecipeListFragment extends AppFragment<IRecipeListView, RecipeListP
 				startActivity(StepsActivity.newIntent(getContext(), (Recipe) adapter.getItem(position)));
 			}
 		});
+
 	}
 
 	@Override
@@ -74,12 +79,13 @@ public class RecipeListFragment extends AppFragment<IRecipeListView, RecipeListP
 
 	@Override
 	public RecipeListPresenter createPresenter() {
-		return new RecipeListPresenter(BakeryApp.getsInstance().getRecipeRepository());
+		return new RecipeListPresenter(BakeryApp.getsInstance().getRecipeRepository(),  null);
 	}
 
 	@Override
 	public void loadRecipes(ArrayList<Recipe> recipes) {
 		mRecipeAdapter.setNewData(recipes);
+//		((MainActivity) getActivity()).getSimpleIdlingResource().setIdleState(true);
 	}
 
 	@Override
