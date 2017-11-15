@@ -66,6 +66,8 @@ public class RecipeDetailFragment extends AppFragment<IRecipeDetailView, RecipeD
 			if(bundle.containsKey(RECIPE_KEY)){
 				mRecipe = bundle.getParcelable(RECIPE_KEY);
 
+				getAppActivityListener().setTitle(mRecipe.getName());
+
 				Glide.with(getContext())
 						.load(mRecipe.getImage())
 						.thumbnail(Glide.with(getContext())

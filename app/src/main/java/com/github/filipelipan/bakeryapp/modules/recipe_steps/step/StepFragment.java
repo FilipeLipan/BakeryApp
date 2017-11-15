@@ -40,6 +40,7 @@ import com.github.filipelipan.bakeryapp.modules.recipe_steps.CardAdapter;
 import com.github.filipelipan.bakeryapp.modules.recipe_steps.CardFragmentPagerAdapter;
 import com.github.filipelipan.bakeryapp.modules.recipe_steps.IRecipeStepsView;
 import com.github.filipelipan.bakeryapp.modules.recipe_steps.RecipeStepsPresenter;
+import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayer;
