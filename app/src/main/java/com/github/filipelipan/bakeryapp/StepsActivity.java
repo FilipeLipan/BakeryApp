@@ -1,5 +1,7 @@
 package com.github.filipelipan.bakeryapp;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.github.filipelipan.bakeryapp.application.BakeryApp;
 import com.github.filipelipan.bakeryapp.common.AppActivity;
 import com.github.filipelipan.bakeryapp.data.model.Ingredient;
 import com.github.filipelipan.bakeryapp.data.model.Recipe;
@@ -62,6 +65,8 @@ public class StepsActivity extends AppActivity implements StepFragment.StepFragm
 
 		if(getIntent().getExtras() != null && getIntent().getExtras().containsKey(RECIPE_KEY)){
 			mRecipe = getIntent().getExtras().getParcelable(RECIPE_KEY);
+			BakeryApp.getsInstance().getRecipeSharedPreferenceHelper().setSharedPreferences(mRecipe);
+			updateWidget();
 		}
 
 		setToolbar(toolbar);
@@ -77,6 +82,15 @@ public class StepsActivity extends AppActivity implements StepFragment.StepFragm
 		if (savedInstanceState == null && mRecipe != null) {
 			replaceFragment(RecipeDetailFragment.newInstance(mRecipe));
 		}
+	}
+
+	public void updateWidget(){
+		AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
+		int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(this, IngredientsListWidget.class));
+		//Trigger data update to handle the GridView widgets and force a data refresh
+		appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_list_view);
+		//Now update all widgets
+		IngredientsListWidget.updateRecipeListWidgets(this, appWidgetManager,appWidgetIds);
 	}
 
 	@Override

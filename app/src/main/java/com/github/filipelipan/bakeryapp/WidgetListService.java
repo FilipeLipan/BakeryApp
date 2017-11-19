@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
+import com.github.filipelipan.bakeryapp.data.cache.RecipeSharedPreferenceHelper;
 import com.github.filipelipan.bakeryapp.data.model.Ingredient;
 
 import java.util.ArrayList;
@@ -36,10 +37,9 @@ class ListRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 
 	@Override
 	public void onDataSetChanged() {
-		Ingredient ingredient = new Ingredient().setQuantity(1).setMeasure("teste").setIngredient("testeIngredient");
-		mIngredients = new ArrayList<>();
-		mIngredients.add(ingredient);
-		mIngredients.add(ingredient);
+		RecipeSharedPreferenceHelper recipeSharedPreferenceHelper = new RecipeSharedPreferenceHelper(mContext);
+		mIngredients = recipeSharedPreferenceHelper.getRecipeStoragePreference().getIngredients();
+
 	}
 
 	@Override

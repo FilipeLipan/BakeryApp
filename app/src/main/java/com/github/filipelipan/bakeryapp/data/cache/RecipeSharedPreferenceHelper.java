@@ -20,7 +20,7 @@ public class RecipeSharedPreferenceHelper {
         mEditor = mSharedPreferences.edit();
     }
 
-    public Recipe getStoragePreference() {
+    public Recipe getRecipeStoragePreference() {
         Gson gson = new Gson();
         String exercise = mSharedPreferences.getString(STORAGE, "");
         return gson.fromJson(exercise, Recipe.class);
