@@ -13,4 +13,5 @@
     <string name="pause">Pause</string>
     <string name="restart">Restart</string>
     <string name="next">next</string>
+    <string name="steps_title">Steps</string>
 </resources>

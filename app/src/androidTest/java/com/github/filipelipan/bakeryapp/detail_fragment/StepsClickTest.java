@@ -1,36 +1,36 @@
-package com.github.filipelipan.bakeryapp;
+package com.github.filipelipan.bakeryapp.detail_fragment;
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.test.InstrumentationRegistry;
-import android.support.test.espresso.Espresso;
 import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 
+import com.github.filipelipan.bakeryapp.R;
+import com.github.filipelipan.bakeryapp.StepsActivity;
 import com.github.filipelipan.bakeryapp.data.model.Ingredient;
 import com.github.filipelipan.bakeryapp.data.model.Recipe;
 import com.github.filipelipan.bakeryapp.data.model.Step;
-import com.github.filipelipan.bakeryapp.modules.recipe_detail.RecipeDetailFragment;
 
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
+import static android.support.test.espresso.action.ViewActions.openLinkWithText;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+
 
 /**
  * Created by lispa on 15/11/2017.
  */
 
-public class TestingRecipeDetailFragment {
+public class StepsClickTest {
 	public static final String TEA_NAME = "Green Tea";
 
 	/**
@@ -67,7 +67,8 @@ public class TestingRecipeDetailFragment {
 	 * Clicks on a GridView item and checks it opens up the OrderActivity with the correct details.
 	 */
 	@Test
-	public void click_Ingredient_And_Clipboard() {
-		onView(withId(R.id.ingredients_rv)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+	public void click_steps_and_go_to_detail_screen() {
+		onView(withId(R.id.steps_rv)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+//		onView(withId(R.id.toolbar)).check(matches(withText("Steps")));
 	}
 }

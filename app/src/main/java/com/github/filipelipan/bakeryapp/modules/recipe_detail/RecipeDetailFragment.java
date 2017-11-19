@@ -77,6 +77,19 @@ public class RecipeDetailFragment extends AppFragment<IRecipeDetailView, RecipeD
 			}
 		}
 
+		mStepsAdapter = new StepsAdapter(mRecipe.getSteps(), getContext());
+
+		mStepsAdapter.setEmptyView(getAppActivityListener().inflateView(R.layout.empty_list, mStepsRecyclerView));
+		mStepsRecyclerView.setAdapter(mStepsAdapter);
+		mStepsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+		mStepsAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+			@Override
+			public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+				getAppActivityListener().replaceAndBackStackFragment(RecipeStepsFragment.newInstance(mRecipe.getSteps(), position));
+			}
+		});
+
 		mIngredientsAdapter = new IngredientsAdapter(mRecipe.getIngredients(), getContext());
 
 		mIngredientsAdapter.setEmptyView(getAppActivityListener().inflateView(R.layout.empty_list, mIngredientsRecyclerView));
@@ -94,18 +107,7 @@ public class RecipeDetailFragment extends AppFragment<IRecipeDetailView, RecipeD
 			}
 		});
 
-		mStepsAdapter = new StepsAdapter(mRecipe.getSteps(), getContext());
 
-		mStepsAdapter.setEmptyView(getAppActivityListener().inflateView(R.layout.empty_list, mStepsRecyclerView));
-		mStepsRecyclerView.setAdapter(mStepsAdapter);
-		mStepsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-		mStepsAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-			@Override
-			public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-				getAppActivityListener().replaceAndBackStackFragment(RecipeStepsFragment.newInstance(mRecipe.getSteps(), position));
-			}
-		});
 	}
 
 	@Override

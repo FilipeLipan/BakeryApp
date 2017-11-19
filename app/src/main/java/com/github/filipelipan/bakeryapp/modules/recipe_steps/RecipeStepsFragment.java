@@ -47,6 +47,10 @@ public class RecipeStepsFragment extends AppFragment<IRecipeStepsView, RecipeSte
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
+		if(!getResources().getBoolean(R.bool.is_tablet)){
+			getAppActivityListener().setTitle(getString(R.string.steps_title));
+		}
+
 		if(getArguments().containsKey(KEY_STEPS) && getArguments().containsKey(KEY_POSITION)){
 			mSteps = getArguments().getParcelableArrayList(KEY_STEPS);
 			mPosition = getArguments().getInt(KEY_POSITION);
