@@ -31,7 +31,20 @@
         <activity
             android:name=".StepsActivity"
             android:label="@string/title_activity_steps"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-    </application>
+            android:theme="@style/AppTheme.NoActionBar" />
 
+        <service
+            android:name=".WidgetListService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <receiver android:name=".IngredientsListWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/ingredients_list_widget_info" />
+        </receiver>
+    </application>
 </manifest>
