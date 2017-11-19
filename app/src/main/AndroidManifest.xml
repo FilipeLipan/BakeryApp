@@ -29,6 +29,7 @@
             </intent-filter>
         </activity>
         <activity
+
             android:name=".StepsActivity"
             android:label="@string/title_activity_steps"
             android:theme="@style/AppTheme.NoActionBar" />

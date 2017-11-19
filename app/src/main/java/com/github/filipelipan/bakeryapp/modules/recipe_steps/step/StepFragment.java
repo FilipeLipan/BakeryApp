@@ -74,6 +74,7 @@ public class StepFragment extends AppFragment<IRecipeStepsView, RecipeStepsPrese
 
 	public static final String STEP_KEY = "STEP_KEY";
 	public static final String IS_LAST_ITEM_KEY = "IS_LAST_ITEM_KEY";
+	private static final String SELECTED_POSITION = "position_key";
 
 	private Step mStep;
 
@@ -104,6 +105,7 @@ public class StepFragment extends AppFragment<IRecipeStepsView, RecipeStepsPrese
 	private SimpleExoPlayer mExoPlayer;
 	private static MediaSessionCompat mMediaSession;
 	private PlaybackStateCompat.Builder mStateBuilder;
+	private long position;
 
 	//////////////////////////// ExoPlayer
 
@@ -168,6 +170,16 @@ public class StepFragment extends AppFragment<IRecipeStepsView, RecipeStepsPrese
 
 		// Initialize the player.
 		initializePlayer(Uri.parse(mStep.getVideoURL()));
+
+		position = C.TIME_UNSET;
+		if (savedInstanceState != null) {
+			position = savedInstanceState.getLong(SELECTED_POSITION, C.TIME_UNSET);
+		}
+
+		if (position != C.TIME_UNSET){
+			mExoPlayer.seekTo(position);
+			mExoPlayer.setPlayWhenReady(true);
+		}
 	}
 
 	@OnClick(R.id.next_bt)
@@ -277,11 +289,27 @@ public class StepFragment extends AppFragment<IRecipeStepsView, RecipeStepsPrese
 	/**
 	 * Release the player when the activity is destroyed.
 	 */
+//	@Override
+//	public void onDestroyView() {
+//		super.onDestroyView();
+//		releasePlayer();
+//		mMediaSession.setActive(false);
+//	}
+
 	@Override
-	public void onDestroyView() {
-		super.onDestroyView();
-		releasePlayer();
-		mMediaSession.setActive(false);
+	public void onPause() {
+		super.onPause();
+		if (mExoPlayer != null) {
+			position = mExoPlayer.getCurrentPosition();
+			releasePlayer();
+			mMediaSession.setActive(false);
+		}
+	}
+
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putLong(SELECTED_POSITION, position);
 	}
 
 	// ExoPlayer Event Listeners
