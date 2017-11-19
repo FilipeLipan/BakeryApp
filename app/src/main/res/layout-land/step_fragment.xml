@@ -41,6 +41,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/next"
+            style="@style/AccentButton"
             android:id="@+id/next_bt"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
