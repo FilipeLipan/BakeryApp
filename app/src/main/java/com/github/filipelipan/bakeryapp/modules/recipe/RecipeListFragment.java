@@ -61,7 +61,7 @@ public class RecipeListFragment extends AppFragment<IRecipeListView, RecipeListP
 		mRecipeAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
 			@Override
 			public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-				startActivity(StepsActivity.newIntent(getContext(), (Recipe) adapter.getItem(position)));
+				startActivity(StepsActivity.newIntent(getContext(), (Recipe) adapter.getItem(position), false));
 			}
 		});
 

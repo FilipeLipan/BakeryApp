@@ -5,6 +5,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -49,10 +50,14 @@ public class RecipeDetailFragment extends AppFragment<IRecipeDetailView, RecipeD
 	@BindView(R.id.recipe_image_kbv)
 	KenBurnsView mRecipeImage;
 
-	public static RecipeDetailFragment newInstance(Recipe recipe){
+	public static final String HIDE_ANIMATION_KEY = "hide-animation-key";
+	private boolean mAnimationKey = false;
+
+	public static RecipeDetailFragment newInstance(Recipe recipe, boolean animationKey){
 		RecipeDetailFragment recipeDetailFragment = new RecipeDetailFragment();
 		Bundle bundle = new Bundle();
 		bundle.putParcelable(RECIPE_KEY, recipe);
+		bundle.putBoolean(HIDE_ANIMATION_KEY, animationKey);
 		recipeDetailFragment.setArguments(bundle);
 		return recipeDetailFragment;
 	}
@@ -60,11 +65,14 @@ public class RecipeDetailFragment extends AppFragment<IRecipeDetailView, RecipeD
 	@Override
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-//		mRecipeImage.setVisibility(View.GONE);
 		Bundle bundle = getArguments();
 		if(bundle != null ){
 			if(bundle.containsKey(RECIPE_KEY)){
 				mRecipe = bundle.getParcelable(RECIPE_KEY);
+				mAnimationKey = bundle.getBoolean(HIDE_ANIMATION_KEY);
+				if(mAnimationKey){
+					mRecipeImage.setVisibility(View.GONE);
+				}
 
 				getAppActivityListener().setTitle(mRecipe.getName());
 

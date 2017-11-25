@@ -1,10 +1,12 @@
 package com.github.filipelipan.bakeryapp;
 
+import android.app.Fragment;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.VisibleForTesting;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
@@ -43,11 +45,14 @@ public class StepsActivity extends AppActivity implements StepFragment.StepFragm
 	private Recipe mRecipe;
 
 	public static final String RECIPE_KEY = "recipe";
+	public static final String HIDE_ANIMATION_KEY = "hide-animation-key";
+	private boolean mAnimationKey = false;
 
-	public static Intent newIntent(Context context,Recipe recipe){
+	public static Intent newIntent(Context context,Recipe recipe, boolean hideAnimationView){
 		Intent intent = new Intent(context, StepsActivity.class);
 		Bundle bundle = new Bundle();
 		bundle.putParcelable(RECIPE_KEY, recipe);
+		bundle.putBoolean(HIDE_ANIMATION_KEY, hideAnimationView);
 		intent.putExtras(bundle);
 		return intent;
 	};
@@ -65,22 +70,14 @@ public class StepsActivity extends AppActivity implements StepFragment.StepFragm
 
 		if(getIntent().getExtras() != null && getIntent().getExtras().containsKey(RECIPE_KEY)){
 			mRecipe = getIntent().getExtras().getParcelable(RECIPE_KEY);
+			mAnimationKey = getIntent().getExtras().getBoolean(HIDE_ANIMATION_KEY);
 			BakeryApp.getsInstance().getRecipeSharedPreferenceHelper().setSharedPreferences(mRecipe);
 			updateWidget();
 		}
 
 		setToolbar(toolbar);
-//		Step step = new Step().setId(1).setShortDescription("asdasdas").setShortDescription("asdasdasdasd asd as das").setVideoURL("asdasdas").setThumbnailURL("https://i.imgur.com/brMJWS3.jpg");
-//				ArrayList<Step> steps = new ArrayList<>();
-//				steps.add(step);
-//
-//				Ingredient ingredient = new Ingredient().setQuantity(1).setMeasure("teste").setIngredient("testeIngredient");
-//				ArrayList<Ingredient> ingredients = new ArrayList<>();
-//				ingredients.add(ingredient);
-//
-//		mRecipe = new Recipe().setId(1).setName("teste").setServings(1).setImage("https://i.imgur.com/brMJWS3.jpg").setSteps(steps).setIngredients(ingredients);
 		if (savedInstanceState == null && mRecipe != null) {
-			replaceFragment(RecipeDetailFragment.newInstance(mRecipe));
+			replaceFragment(RecipeDetailFragment.newInstance(mRecipe, mAnimationKey));
 		}
 	}
 
@@ -124,6 +121,4 @@ public class StepsActivity extends AppActivity implements StepFragment.StepFragm
 			super.onBackPressed();
 		}
 	}
-
-
 }
