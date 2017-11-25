@@ -2,25 +2,19 @@ package com.github.filipelipan.bakeryapp.modules.recipe;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
-import android.support.annotation.VisibleForTesting;
-import android.support.test.espresso.IdlingResource;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.github.filipelipan.bakeryapp.IdlingResource.SimpleIdlingResource;
-import com.github.filipelipan.bakeryapp.MainActivity;
 import com.github.filipelipan.bakeryapp.R;
 import com.github.filipelipan.bakeryapp.StepsActivity;
 import com.github.filipelipan.bakeryapp.application.BakeryApp;
 import com.github.filipelipan.bakeryapp.common.AppFragment;
 import com.github.filipelipan.bakeryapp.data.model.Recipe;
-import com.github.filipelipan.bakeryapp.modules.recipe_detail.RecipeDetailFragment;
 
 import java.util.ArrayList;
 
@@ -32,10 +26,14 @@ import butterknife.BindView;
 
 public class RecipeListFragment extends AppFragment<IRecipeListView, RecipeListPresenter> implements IRecipeListView {
 
+	private static final String SAVED_LAYOUT_MANAGER = "manage-key";
+	private static final String LIST_KEY = "list_key";
 	@BindView(R.id.recipe_list_rv)
 	RecyclerView mRecipeRecyclerView;
 
 	private RecipeAdapter mRecipeAdapter;
+	private Parcelable mState;
+	private ArrayList<Recipe> mRecipes;
 
 	public static RecipeListFragment newInstance(){
 		return new RecipeListFragment();
@@ -45,7 +43,14 @@ public class RecipeListFragment extends AppFragment<IRecipeListView, RecipeListP
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
-		getPresenter().getRecipes();
+		if(savedInstanceState != null){
+			mRecipes = savedInstanceState.getParcelableArrayList(LIST_KEY);
+			mState = savedInstanceState.getParcelable(SAVED_LAYOUT_MANAGER);
+		}
+
+		if(savedInstanceState == null || mRecipes == null){
+			getPresenter().getRecipes();
+		}
 
 		initAdapter();
 	}
@@ -57,6 +62,13 @@ public class RecipeListFragment extends AppFragment<IRecipeListView, RecipeListP
 		mRecipeAdapter.setEmptyView(getAppActivityListener().inflateView(R.layout.empty_list, mRecipeRecyclerView));
 		mRecipeRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), calculateNoOfColumns(getContext())));
 		mRecipeRecyclerView.setAdapter(mRecipeAdapter);
+
+		if(mRecipes != null){
+			if(mState != null) {
+				mRecipeAdapter.setNewData(mRecipes);
+				mRecipeRecyclerView.getLayoutManager().onRestoreInstanceState(mState);
+			}
+		}
 
 		mRecipeAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
 			@Override
@@ -84,8 +96,9 @@ public class RecipeListFragment extends AppFragment<IRecipeListView, RecipeListP
 
 	@Override
 	public void loadRecipes(ArrayList<Recipe> recipes) {
+		mRecipes = recipes;
 		mRecipeAdapter.setNewData(recipes);
-//		((MainActivity) getActivity()).getSimpleIdlingResource().setIdleState(true);
+//		((MainActivity) getActivity()).getSimpleIdlingResource().setIdleState(true)
 	}
 
 	@Override
@@ -115,4 +128,12 @@ public class RecipeListFragment extends AppFragment<IRecipeListView, RecipeListP
 		}
 		return noOfColumns;
 	}
+
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putParcelable(SAVED_LAYOUT_MANAGER, mRecipeRecyclerView.getLayoutManager().onSaveInstanceState());
+		outState.putParcelableArrayList(LIST_KEY, mRecipes);
+	}
+
 }
