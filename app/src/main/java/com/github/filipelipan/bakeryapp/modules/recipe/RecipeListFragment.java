@@ -133,7 +133,9 @@ public class RecipeListFragment extends AppFragment<IRecipeListView, RecipeListP
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 		outState.putParcelable(SAVED_LAYOUT_MANAGER, mRecipeRecyclerView.getLayoutManager().onSaveInstanceState());
-		outState.putParcelableArrayList(LIST_KEY, mRecipes);
+		if(mRecipes != null) {
+			outState.putParcelableArrayList(LIST_KEY, mRecipes);
+		}
 	}
 
 }
